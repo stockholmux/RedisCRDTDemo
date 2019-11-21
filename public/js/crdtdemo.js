@@ -2,22 +2,6 @@
 * Client-side JavaScript to handle AJAX commands
 *
 */
-
-
-function countClick(imageid){
-  $.ajax({
-    type: 'POST',
-    url: '/incrcount',
-    dataType: 'json',
-    data: {
-      id: imageid},
-    success: function( result ) {
-    }
-  });
-
-}
-
-
 function getCount(imageid){
   $.ajax({
     type: 'GET',
@@ -30,3 +14,21 @@ function getCount(imageid){
     }
   });
 }
+
+
+function countClick(imageid){
+  $.ajax({
+    type: 'POST',
+    url: '/incrcount',
+    dataType: 'json',
+    data: {
+      id: imageid},
+    success: function( result ) {
+      console.log('getcount')
+      getCount(imageid);
+    }
+  });
+
+}
+
+
