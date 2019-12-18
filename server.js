@@ -21,13 +21,21 @@ process.env.location = process.argv[4] || "";
 // Redis client to query and publish to a channel
 var redisClient = redis.createClient({
   port : redisPort,
-  host : 'localhost'
+  host : 'localhost',
+  retry_strategy : function(options) {
+    console.log('retrying...',arguments);
+    return 1000;
+  }
 });
 
 // Redis client to listen to a channel
 var redisSub = redis.createClient({
   port : redisPort,
-  host : 'localhost'
+  host : 'localhost',
+  retry_strategy : function(options) {
+    console.log('retrying...',arguments);
+    return 1000;
+  }
 });
 
 // Init modules to process get and post parameters
